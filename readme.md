@@ -11,6 +11,7 @@ This plugin supports only Objective-C.
 - Copy expression
 - Copy as selector or `@selector()` or `NSSelectorFromString()`
 - Copy as `objc_msgSend()` snippet
+- Copy as Symbolic Breakpoint expression
 - Copy as [KZRMethodSwizzling](https://github.com/hetima/KZRMethodSwizzling) macro snippet
 - Support property getter/setter
 - Honding Alt key to change style variation
