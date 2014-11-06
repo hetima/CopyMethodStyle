@@ -378,6 +378,10 @@ enum : NSUInteger {
     }
     
     itm=addMenuItem(menu, @"selector", @selector(actCopySelector:));
+    if (kUseSymbolicBreakpoint) {
+        itm=addMenuItem(menu, @"Symbolic Breakpoint", @selector(actCopySymbolicBreakpoint:));
+        alternate(itm);
+    }
     
     if (kUseNSSelectorFromString) {
         itm=addMenuItem(menu, @"NSSelectorFromString()", @selector(actCopySelectorWithNS:));
@@ -403,6 +407,10 @@ enum : NSUInteger {
         addMenuItemLabel(menu, @"setter");
         
         itm=addMenuItem(menu, @"selector", @selector(actCopySelectorSetter:));
+        if (kUseSymbolicBreakpoint) {
+            itm=addMenuItem(menu, @"Symbolic Breakpoint", @selector(actCopySymbolicBreakpointSetter:));
+            alternate(itm);
+        }
         
         if (kUseNSSelectorFromString) {
             itm=addMenuItem(menu, @"NSSelectorFromString()", @selector(actCopySelectorWithNSSetter:));
@@ -669,4 +677,27 @@ enum : NSUInteger {
 
 }
 
+
+// KZRMETHOD_SWIZZLING_
+- (void)actCopySymbolicBreakpoint:(NSMenuItem*)sender
+{
+    _propertyTransform=asGetter;
+    NSString* str=[self symbolicBreakpointString];
+    [self writeStringToPasteboard:str];
+}
+
+// KZRMETHOD_SWIZZLING_ setter
+- (void)actCopySymbolicBreakpointSetter:(NSMenuItem*)sender
+{
+    _propertyTransform=asSetter;
+    NSString* str=[self symbolicBreakpointString];
+    [self writeStringToPasteboard:str];
+}
+
+- (NSString*)symbolicBreakpointString
+{
+    NSString* selectr=[self methodSelectorName];
+    NSString* str=[NSString stringWithFormat:@"%@[%@ %@]", _prefix, _decoratedClassName, selectr];
+    return str;
+}
 @end
