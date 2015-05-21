@@ -272,6 +272,7 @@ enum : NSUInteger {
 - (NSString*)methodReturnType
 {
     if (_propertyDeclaration) {
+         if(_propertyTransform==asSetter) return @"void";
         return [CMSUtil propertyReturnType:_rawText];
     }else{
         return [CMSUtil methodReturnType:_rawText];
