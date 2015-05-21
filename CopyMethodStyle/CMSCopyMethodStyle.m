@@ -50,14 +50,20 @@ static CMSCopyMethodStyle *sharedPlugin;
     self = [super init];
     if (!self) return nil;
     
-    
     _bundle = plugin;
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:nil];
+    
+    return self;
+}
+
+
+- (void)applicationDidFinishLaunching:(NSNotification*)note
+{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        KZRMETHOD_SWIZZLING_("IDESourceCodeEditor", "setupTextViewContextMenuWithMenu:",
-                             void, call, sel)
+        KZRMETHOD_SWIZZLING_("IDESourceCodeEditor", "setupTextViewContextMenuWithMenu:", void, call, sel)
         ^(id slf, NSMenu* menu)
         {
             call(slf, sel, menu);
@@ -81,14 +87,7 @@ static CMSCopyMethodStyle *sharedPlugin;
         
     });
     
-    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:nil];
-    
-    return self;
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification*)note
-{
-
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
 }
 
 
