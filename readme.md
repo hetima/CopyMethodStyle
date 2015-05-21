@@ -1,6 +1,6 @@
 # CopyMethodStyle
 
-CopyMethodStyle is plugin for Xcode 6.1  
+CopyMethodStyle is plugin for Xcode 6.1 ~ 6.3.2  
 This plugin adds menu to context menu on method declaration.  
 The menu copies method as various style.
 This plugin supports only Objective-C.
@@ -14,7 +14,7 @@ This plugin supports only Objective-C.
 - Copy as Symbolic Breakpoint expression
 - Copy as [KZRMethodSwizzling](https://github.com/hetima/KZRMethodSwizzling) macro snippet
 - Support property getter/setter
-- Honding Alt key to change style variation
+- Holding Alt key to change style variation
 
 ##Installation
 Download project, build, relaunch Xcode.
