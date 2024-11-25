@@ -5,7 +5,7 @@ This plugin adds menu to context menu on method declaration.
 The menu copies method as various style.
 This plugin supports only Objective-C.
 
-##Features
+## Features
 
 - Copy class name
 - Copy expression
@@ -16,7 +16,8 @@ This plugin supports only Objective-C.
 - Support property getter/setter
 - Holding Alt key to change style variation
 
-##Installation
+## Installation
+
 Download project, build, relaunch Xcode.
 CopyMethodStyle.xcplugin will be installed in
  `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`
@@ -24,7 +25,6 @@ CopyMethodStyle.xcplugin will be installed in
 ![screenshot](screenshot.png)
 
 ## Author
-http://hetima.com/  
 https://twitter.com/hetima
 
 ## License 
